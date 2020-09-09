@@ -1,0 +1,39 @@
+
+Login into gcp through GCLOUD SDK:
+	gcloud auth login
+
+Enter address generated into browser and copy and paste the verification code.
+
+Set ProjectID:
+	gcloud config set project PROJECT_ID
+
+Export the zone value given by qwiklab as MY_ZONE:
+	export MY_ZONE=us-central1-a
+
+Copy the deployment file into your directory and name it "mydeploy.yaml":
+	gsutil cp gs://cloud-training/gcpfcoreinfra/mydeploy.yaml mydeploy.yaml
+
+Export the Project ID value given by qwiklab as DEVSHELL_PROJECT_ID
+	export DEVSHELL_PROJECT_ID=qwiklabs-gcp-03-9935ceff17a8
+
+Replace the values of PROJECT_ID as the project ID($DEVSHELL_PROJECT_ID):
+	sed -i -e "s/PROJECT_ID/$DEVSHELL_PROJECT_ID" mydeploy.yaml
+
+Do the same for "ZONE":
+	sed -i -e "s/ZONE/$MY_ZONE/" mydeploy.yaml
+
+Confirm using cat to check the replaced values:
+	cat mydeploy.yaml
+
+Build a deployment from the template:
+	gcloud deployment-manager deployments create my-first-depl --config mydeploy.yaml
+
+Use nano text editor to edit the mydeploy.yaml file:
+	 nano mydeploy.yaml
+
+Edit the value <value: apt-get update> to <apt-get update; apt-get install nginx-light -y> and the save and exit:
+	ctrl+o then enter (save as file)
+	ctrl+x (return to terminal and keep file written)
+
+Make Deployment Manager to update your deployment to install the new startup script:
+	gcloud deployment-manager deployments update my-first-depl --config mydeploy.yaml

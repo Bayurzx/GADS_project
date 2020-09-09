@@ -1,0 +1,68 @@
+# To login through GCP SDK enter the command below
+
+	gcloud auth login
+
+
+# Open the link provided in the CLI in a browser(preferably in incognito mode). Enter the username and password provided by qwiklabs and copy the verification code provided into your CLI
+
+# You will recieve an output: "You are now logged in as ..."
+
+# Set the project you will be working on using this command. Remember to use you project ID provided by qwiklabs in place of <PROJECT_ID>
+
+	gcloud config set project <PROJECT_ID>
+
+# Initialize your App Engine app with your project and choose its region:
+
+	gcloud app create --project=<PROJECT_ID>
+
+# Ensure you select the region US-central1 as stated by the lab resources
+
+# Clone the source code repository for a sample application in the hello_world directory:
+
+	git clone https://github.com/GoogleCloudPlatform/python-docs-samples
+
+# Navigate to the source directory:
+	
+	cd python-docs-samples/appengine/standard_python3/hello_world
+
+# Execute the following command to download and update the packages list
+
+	sudo apt-get update
+
+# Set up a separate virtual environment in which you will run your application locally before deploying.
+
+	sudo apt-get install virtualenv
+
+# Run the following command to setup the files required to run virtualenv on python 3
+ 
+	virtualenv -p python3 venv
+
+# Activate the venv:
+
+	source venv/bin/activate
+
+# Install dependencies for project listed in requirements.txt:
+
+	pip install  -r requirements.txt
+
+# Run the application:
+
+	python main.py
+
+# Preview the app on localhost:8080 and then quit when done.
+
+# Now to deploy and run Hello World on App Engine
+
+# Deploy your Hello World application:
+
+	gcloud app deploy
+
+# Run this command to view your application link and visit app:
+
+	gcloud app browse
+
+# Deactivate the app by going to the console:
+	
+	gcloud app open-console
+
+# Click the deactivate button
